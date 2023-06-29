@@ -10,26 +10,28 @@
 
     <properties>
         <java.version>20</java.version>
-        <cucumber-java.version>7.12.0</cucumber-java.version>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
+        <cucumber-property-version>7.12.0</cucumber-property-version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>${cucumber-java.version}</version>
+            <version>${cucumber-property-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
-            <version>${cucumber-java.version}</version>
+            <version>${cucumber-property-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
-            <version>${cucumber-java.version}</version>
+            <version>${cucumber-property-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
