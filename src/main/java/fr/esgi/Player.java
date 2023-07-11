@@ -5,6 +5,7 @@ public class Player {
     private Score score;
     private final String name;
     private int gameWon = 0;
+    private boolean isAdvantage;
 
     public Player(String name) {
         this.name = name;
@@ -28,5 +29,13 @@ public class Player {
 
     public void setGameWon() {
         this.gameWon++;
+    }
+
+    public void setAdvantage(boolean isAdvantage) {
+        this.isAdvantage = isAdvantage;
+    }
+
+    public boolean isAdvantage() {
+        return isAdvantage;
     }
 }

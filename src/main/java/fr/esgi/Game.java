@@ -5,6 +5,7 @@ import static fr.esgi.Score.*;
 class Game {
 
     private boolean isStarted;
+    private boolean isDeuce;
     private final Player playerOne;
     private final Player playerTwo;
 
@@ -56,7 +57,29 @@ class Game {
         return playerTwo;
     }
 
-    public void hasWon(Player playerOne) {
-        playerOne.setGameWon();
+    public void hasWon(Player player) {
+        player.setGameWon();
+    }
+
+    public void winThePointOfDeuce(Player player) {
+        if (player.isAdvantage()) {
+            System.out.printf("%s has win the game", player.getName());
+            hasWon(player);
+        } else {
+            System.out.printf("%s has reach 40 points too", player.getName());
+            setDeuce(true);
+        }
+    }
+
+    public boolean isDeuce() {
+        return isDeuce;
+    }
+
+    public void setDeuce(boolean deuce) {
+        isDeuce = deuce;
+    }
+
+    public void winThePointOfTheAdvantage(Player playerOne) {
+        playerOne.setAdvantage(true);
     }
 }
