@@ -1,6 +1,6 @@
 package fr.esgi;
 
-public class Player {
+final class Player {
 
     private Score score;
     private final String name;
@@ -31,11 +31,11 @@ public class Player {
         this.gameWon++;
     }
 
-    public void setAdvantage(boolean isAdvantage) {
-        this.isAdvantage = isAdvantage;
-    }
-
     public boolean isAdvantage() {
         return isAdvantage;
+    }
+
+    public void setAdvantage(boolean isAdvantage) {
+        this.isAdvantage = isAdvantage;
     }
 }

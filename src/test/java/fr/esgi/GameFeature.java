@@ -9,113 +9,119 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameFeature {
 
-    private final Player playerOne = new Player("Sacha");
-    private final Player playerTwo = new Player("Souleman");
-    private final Game game = new Game(playerOne, playerTwo);
+    private final GameContext gameContext;
+
+    public GameFeature(GameContext gameContext) {
+        this.gameContext = gameContext;
+    }
+
+    public Game game() {
+        return this.gameContext.game();
+    }
 
     @Given("The game as not started yet")
     public void theGameAsNotStartedYet() {
-        assertThat(game.isStarted()).isFalse();
+        assertThat(game().isStarted()).isFalse();
     }
 
     @When("game start")
     public void gameStart() {
-        this.game.start(playerOne, playerTwo);
+        game().start(game().playerOne(), game().playerTwo());
     }
 
     @Then("both player should have score LOVE")
     public void bothPlayerShouldHaveScore() {
-        assertThat(game.getPlayerOne().getScore()).isEqualTo(LOVE);
-        assertThat(game.getPlayerTwo().getScore()).isEqualTo(LOVE);
+        assertThat(game().playerOne().getScore()).isEqualTo(LOVE);
+        assertThat(game().playerTwo().getScore()).isEqualTo(LOVE);
     }
 
     @Given("Player One has LOVE")
     public void playerOneHasLOVE() {
-        this.playerOne.setScore(LOVE);
+        game().playerOne().setScore(LOVE);
     }
 
     @When("Player One win the first point")
     public void playerOneWinTheFirstPoint() {
-        this.game.winFirstPoint(this.playerOne);
+        game().winPoints(game().playerOne());
     }
 
     @Then("Player One should have FIFTEEN")
     public void playerOneShouldHaveFIFTEEN() {
-        assertThat(this.game.getPlayerOne().getScore()).isEqualTo(FIFTEEN);
+        assertThat(game().playerOne().getScore()).isEqualTo(FIFTEEN);
     }
 
     @Given("Player Two has LOVE")
     public void playerTwoHasLOVE() {
-        this.playerTwo.setScore(LOVE);
+        game().playerTwo().setScore(LOVE);
     }
 
     @When("Player Two win the second point")
     public void playerTwoWinTheSecondPoint() {
-        this.game.winSecondPoint(this.playerTwo);
+        game().winPoints(game().playerTwo());
     }
 
     @Then("Player Two should have FIFTEEN")
     public void playerTwoShouldHaveFIFTEEN() {
-        assertThat(this.game.getPlayerTwo().getScore()).isEqualTo(FIFTEEN);
+        assertThat(game().playerTwo().getScore()).isEqualTo(FIFTEEN);
     }
 
     @Given("Player One has FIFTEEN")
     public void playerOneHasFIFTEEN() {
-        this.game.getPlayerOne().setScore(FIFTEEN);
+        game().playerOne().setScore(FIFTEEN);
     }
 
     @When("Player One win the third point")
     public void playerOneWinTheThirdPoint() {
-        this.game.winThirdPoint(this.playerOne);
+        game().winPoints(game().playerOne());
     }
 
     @Then("Player One should have THIRTY")
     public void playerOneShouldHaveTHIRTY() {
-        assertThat(this.game.getPlayerOne().getScore()).isEqualTo(THIRTY);
+        assertThat(game().playerOne().getScore()).isEqualTo(THIRTY);
     }
 
     @Given("Player Two has FIFTEEN")
     public void playerTwoHasFIFTEEN() {
-        this.game.getPlayerTwo().setScore(FIFTEEN);
+        game().playerTwo().setScore(FIFTEEN);
     }
 
     @When("Player Two win the fourth point")
     public void playerTwoWinTheFourthPoint() {
-        this.game.winFourthPoint(this.playerTwo);
+        game().winPoints(game().playerTwo());
     }
 
     @Then("Player Two should have THIRTY")
     public void playerTwoShouldHaveTHIRTY() {
-        assertThat(this.game.getPlayerTwo().getScore()).isEqualTo(THIRTY);
+        assertThat(game().playerTwo().getScore()).isEqualTo(THIRTY);
     }
 
     @Given("Player One has THIRTY")
     public void playerOneHasTHIRTY() {
-        this.game.getPlayerOne().setScore(FORTY);
+        game().playerOne().setScore(FORTY);
     }
 
     @When("Player One win the fifth point")
     public void playerOneWinTheFifthPoint() {
-        this.game.winFifthPoint(this.playerOne);
+        game().winPoints(game().playerOne());
     }
 
     @Then("Player One should have FORTY")
     public void playerOneShouldHaveFORTY() {
-        assertThat(this.game.getPlayerOne().getScore()).isEqualTo(FORTY);
+        assertThat(game().playerOne().getScore()).isEqualTo(FORTY);
     }
 
     @Given("Player Two has THIRTY")
     public void playerTwoHasTHIRTY() {
-        this.game.getPlayerTwo().setScore(FORTY);
+        game().playerTwo().setScore(FORTY);
     }
 
     @When("Player Two win the sixth point")
     public void playerTwoWinTheSixthPoint() {
-        this.game.winSixthPoint(this.playerTwo);
+        game().winPoints(game().playerTwo());
     }
 
     @Then("Player Two should have FORTY")
     public void playerTwoShouldHaveFORTY() {
-        assertThat(this.game.getPlayerTwo().getScore()).isEqualTo(FORTY);
+        assertThat(game().playerTwo().getScore()).isEqualTo(FORTY);
     }
 }

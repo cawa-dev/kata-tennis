@@ -1,9 +1,19 @@
 package fr.esgi;
 
-public enum Score {
+import java.util.Optional;
+
+enum Score {
 
     LOVE,
     FIFTEEN,
     THIRTY,
-    FORTY
+    FORTY;
+
+    public Optional<Score> next() {
+        return switch (this) {
+            case LOVE -> Optional.of(FIFTEEN);
+            case FIFTEEN -> Optional.of(THIRTY);
+            case THIRTY, FORTY -> Optional.of(FORTY);
+        };
+    }
 }

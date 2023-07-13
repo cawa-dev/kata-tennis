@@ -11,27 +11,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningPointFeature {
 
-    private final Player playerOne = new Player("Sacha");
-    private final Player playerTwo = new Player("Souleman");
-    private final Game game = new Game(playerOne, playerTwo);
+    private final GameContext gameContext;
+
+    public WinningPointFeature(GameContext gameContext) {
+        this.gameContext = gameContext;
+    }
+
+    public Game game() {
+        return this.gameContext.game();
+    }
 
     @Given("Player One has FORTY")
     public void playerOneHasFORTY() {
-        this.game.getPlayerOne().setScore(FORTY);
+        game().playerOne().setScore(FORTY);
     }
 
     @And("Player Two have THIRTY")
     public void playerTwoHaveTHIRTY() {
-        this.game.getPlayerTwo().setScore(THIRTY);
+        game().playerTwo().setScore(THIRTY);
     }
 
     @When("Player One win the point")
     public void playerOneWinThePoint() {
-        this.game.hasWon(this.playerOne);
+        game().hasWon(game().playerOne());
     }
 
     @Then("Player One should win the game")
     public void playerOneShouldWinTheGame() {
-        assertThat(this.game.getPlayerOne().getGameWon()).isEqualTo(1);
+        assertThat(game().playerOne().getGameWon()).isEqualTo(1);
     }
 }
