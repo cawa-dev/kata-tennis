@@ -1,8 +1,16 @@
 package fr.esgi;
 
-record Player(
+public record Player(
         Score score,
         String playerName,
         boolean hasAdvantage
 ) {
+
+    public Player withScore(Score score) {
+        return new Player(
+                score,
+                playerName,
+                hasAdvantage
+        );
+    }
 }
