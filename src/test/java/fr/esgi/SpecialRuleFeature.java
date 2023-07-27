@@ -11,73 +11,71 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SpecialRuleFeature {
 
-    private final GameContext gameContext;
-
-    public SpecialRuleFeature(GameContext gameContext) {
-        this.gameContext = gameContext;
-    }
-
-    public Game game() {
-        return this.gameContext.game();
-    }
+    private final Game game = new Game(new Player("Souleman"), new Player("Sarah"));
 
     @Given("Player One has FORTY points")
     public void playerOneHasFORTYPoints() {
-        game().playerOne().setScore(FORTY);
+        game.playerOne().setScore(FORTY);
     }
 
     @And("Player Two has THIRTY points")
     public void playerTwoHasTHIRTYPoints() {
-        game().playerTwo().setScore(THIRTY);
+        game.playerTwo().setScore(THIRTY);
     }
 
-    @When("Player Two win the point")
-    public void playerTwoWinThePoint() {
-        game().winThePointOfDeuce(game().playerTwo());
+    @When("Player Two wins the point")
+    public void playerTwoWinsThePoint() {
+        game.winThePointWhenGameIsDeuce(game.playerTwo());
     }
 
     @Then("Both player have to play DEUCE")
     public void bothPlayerHaveToPlayDEUCE() {
-        assertThat(game().isDeuce()).isTrue();
+        assertThat(game.isDeuce()).isTrue();
     }
 
-    @Given("Game is in DEUCE")
-    public void gameIsInDEUCE() {
-        game().setDeuce(true);
+    @Given("Game is DEUCE")
+    public void gameIsDEUCE() {
+        game.setDeuce(true);
     }
 
-    @When("Player One win the point of the game")
-    public void playerOneWinThePointOfTheGame() {
-        game().winThePointOfTheAdvantage(game().playerOne());
+    @When("Player One wins the point of the game")
+    public void playerOneWinsThePointOfTheGame() {
+        game.winThePointOfTheAdvantage(game.playerOne());
     }
 
     @Then("Player One should have advantage")
     public void playerOneShouldHaveAdvantage() {
-        assertThat(game().playerOne().isAdvantage()).isTrue();
+        assertThat(game.playerOne().isAdvantage()).isTrue();
     }
 
     @Given("Player One has advantage")
     public void playerOneHasAdvantage() {
-        game().playerOne().setAdvantage(true);
+        game.playerOne().setAdvantage(true);
     }
 
-    @When("Player Two win the point of deuce")
-    public void playerTwoWinThePointOfDeuce() {
-        game().winThePointOfDeuce(game().playerTwo());
+    @And("Player Two has FORTY")
+    public void playerTwoHasFORTY() {
+        game.playerTwo().setScore(FORTY);
+    }
+
+    @When("Player Two wins the point when the game was deuce")
+    public void playerTwoWinThePointWhenTheGameIsInDeuce() {
+        game.winThePointWhenGameIsDeuce(game.playerTwo());
     }
 
     @Then("The game return to DEUCE")
     public void theGameReturnToDEUCE() {
-        assertThat(game().isDeuce()).isTrue();
+        assertThat(game.isDeuce()).isTrue();
     }
 
     @Given("Player Two has advantage")
     public void playerTwoHasAdvantage() {
-        game().playerTwo().setAdvantage(true);
+        game.playerTwo().setAdvantage(true);
     }
 
     @Then("Player Two won the game")
     public void playerTwoWonTheGame() {
-        assertThat(game().playerTwo().getGameWon()).isEqualTo(1);
+        assertThat(game.playerTwo().getGameWon()).isEqualTo(1);
     }
+
 }

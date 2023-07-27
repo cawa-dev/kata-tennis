@@ -2,7 +2,7 @@ package fr.esgi;
 
 import static fr.esgi.Score.LOVE;
 
-final class Game {
+public final class Game {
 
     private boolean isStarted;
     private final Player playerOne;
@@ -29,12 +29,14 @@ final class Game {
         player.setGameWon();
     }
 
-    public void winThePointOfDeuce(Player player) {
+    public void winThePointWhenGameIsDeuce(Player player) {
         if (player.isAdvantage()) {
-            System.out.printf("%s has win the game%n", player.getName());
+            System.out.printf("%s has won the game%n", player.getName());
             hasWon(player);
+            setDeuce(false);
         } else {
             System.out.printf("%s has reach 40 points too%n", player.getName());
+            player.setScore(player.getScore().next().orElseThrow(() -> new RuntimeException("The score your trying to reach is limited")));
             setDeuce(true);
         }
     }
@@ -65,5 +67,15 @@ final class Game {
 
     public void setDeuce(boolean deuce) {
         isDeuce = deuce;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "isStarted=" + isStarted +
+                ", playerOne=" + playerOne +
+                ", playerTwo=" + playerTwo +
+                ", isDeuce=" + isDeuce +
+                '}';
     }
 }

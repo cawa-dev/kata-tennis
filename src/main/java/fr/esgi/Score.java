@@ -2,7 +2,7 @@ package fr.esgi;
 
 import java.util.Optional;
 
-enum Score {
+public enum Score {
 
     LOVE,
     FIFTEEN,

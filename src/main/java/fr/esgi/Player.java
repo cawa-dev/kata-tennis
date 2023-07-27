@@ -1,6 +1,6 @@
 package fr.esgi;
 
-final class Player {
+public final class Player {
 
     private Score score;
     private final String name;
@@ -37,5 +37,15 @@ final class Player {
 
     public void setAdvantage(boolean isAdvantage) {
         this.isAdvantage = isAdvantage;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "score=" + score +
+                ", name='" + name + '\'' +
+                ", gameWon=" + gameWon +
+                ", isAdvantage=" + isAdvantage +
+                '}';
     }
 }

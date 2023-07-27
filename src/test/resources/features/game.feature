@@ -7,32 +7,32 @@ Feature: Game
       When game start
       Then both player should have score LOVE
 
-    Example: First Point
+    Example: First point of the game when the first player score a point
       Given Player One has LOVE
-      When Player One win the first point
+      When Player One wins the first point
       Then Player One should have FIFTEEN
 
-    Example: Second Point
+    Example: Second point of the game when the second player score a point
       Given Player Two has LOVE
-      When Player Two win the second point
+      When Player Two wins the second point
       Then Player Two should have FIFTEEN
 
-    Example: Third Point
+    Example: Third point of the game when the first player score a point
       Given Player One has FIFTEEN
-      When Player One win the third point
+      When Player One wins the third point
       Then Player One should have THIRTY
 
-    Example: Fourth Point
+    Example: Fourth point of the game when the second player score a point
       Given Player Two has FIFTEEN
-      When Player Two win the fourth point
+      When Player Two wins the fourth point
       Then Player Two should have THIRTY
 
-    Example: Fifth Point
+    Example: Fifth point of the game when the first player score a point
       Given Player One has THIRTY
-      When Player One win the fifth point
+      When Player One wins the fifth point
       Then Player One should have FORTY
 
-    Example: Sixth Point
+    Example: Fifth point of the game when the second player score a point
       Given Player Two has THIRTY
-      When Player Two win the sixth point
+      When Player Two wins the sixth point
       Then Player Two should have FORTY
